@@ -12,15 +12,22 @@ import java.security.Principal;
 public class MainController {
     private static final Logger log = LoggerFactory.getLogger(MainController.class);
 
+    private final ProcessInterface process;
+
+    public MainController(ProcessInterface process) {
+        this.process = process;
+    }
+
     @GetMapping("/admin")
     public String admin(Principal user) {
-        log.info(user.getName() + " visited admin page");
+        log.info("{} visited admin page", user.getName());
         return "/content/admin";
     }
 
     @GetMapping("/user")
     public String user(Principal user) {
-        log.info(user.getName() + " visited user page");
+        log.info(process.getMessage());
+        log.info("{} visited user page", user.getName());
         return "/content/user";
     }
 
