@@ -18,6 +18,8 @@
         <logout logout-url="/logout" logout-success-url="/login" invalidate-session="true"/>
 
         <access-denied-handler error-page="/accessDenied"/>
+
+        <remember-me/>
     </http>
 
     <authentication-manager>

@@ -21,6 +21,7 @@
         </c:if>
         <input type="text" name="user_login" class="form-control" placeholder="Email address or name" required="" autofocus="">
         <input type="password" name="password_login" class="form-control" placeholder="Password" required="">
+        <input type="checkbox" name="_spring_security_remember_me"> Remember me
         <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
         <a href="#" id="forgot_pswd">Forgot password?</a>
         <hr>
