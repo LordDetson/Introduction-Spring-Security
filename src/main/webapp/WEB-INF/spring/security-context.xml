@@ -22,17 +22,35 @@
 
         <access-denied-handler error-page="/accessDenied"/>
 
-        <remember-me key="myAppKey" remember-me-parameter="remember-me"/>
+        <remember-me key="myAppKey" remember-me-parameter="remember-me" data-source-ref="dataSource"/>
     </http>
 
+    <!--<bean:bean id="jdbcGroupImplForMySQL8" class="org.springframework.security.provisioning.JdbcUserDetailsManager">
+        <bean:property name="dataSource" ref="dataSource"/>
+        <bean:property name="enableAuthorities" value="false"/>
+        <bean:property name="enableGroups" value="true"/>
+        <bean:property name="findAllGroupsSql" value="select group_name from `groups`"/>
+        <bean:property name="insertGroupSql" value="insert into `groups` (group_name) values (?)"/>
+        <bean:property name="findGroupIdSql" value="select id from `groups` where group_name = ?"/>
+        <bean:property name="deleteGroupSql" value="delete from `groups` where id = ?"/>
+        <bean:property name="renameGroupSql" value="update `groups` set group_name = ? where group_name = ?"/>
+        <bean:property name="findUsersInGroupSql"
+                       value="select username from group_members gm, `groups` g where gm.group_id = g.id and g.group_name = ?"/>
+        <bean:property name="groupAuthoritiesByUsernameQuery"
+                       value="select g.id, g.group_name, ga.authority from `groups` g, group_authorities ga where g.group_name = ? and g.id = ga.group_id"/>
+    </bean:bean>-->
+
     <authentication-manager>
+        <!--<authentication-provider user-service-ref="jdbcGroupImplForMySQL8">-->
         <authentication-provider>
-            <user-service>
+            <!--<user-service>
                 <user name="admin" password="{noop}admin" authorities="ROLE_ADMIN, ROLE_USER"/>
                 <user name="user" password="{noop}pass" authorities="ROLE_USER"/>
-            </user-service>
+            </user-service>-->
+            <jdbc-user-service data-source-ref="dataSource"/>
         </authentication-provider>
     </authentication-manager>
 
-    <bean:bean id ="passwordEncoder" class = "org.springframework.security.crypto.password.NoOpPasswordEncoder" factory-method = "getInstance" />
+    <bean:bean id="passwordEncoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder"
+               factory-method="getInstance"/>
 </bean:beans>

@@ -55,6 +55,10 @@
             <artifactId>spring-security-config</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
 
         <!-- Logging -->
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
